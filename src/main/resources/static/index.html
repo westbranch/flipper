@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+<table>
+    <tr>
+        <td>
+            BROWSER
+            <form method="POST" enctype="multipart/form-data" action="/mirror">
+                Axis: <input type="text" name="axis"><br/> <br/>
+                <input type="file" name="file"><br/> <br/>
+                <input type="submit" value="Upload">
+            </form>
+        </td>
+        <td>
+            LOCAL
+            <form method="POST" enctype="multipart/form-data" action="/local">
+                Axis: <input type="text" name="axis"><br/> <br/>
+                <input type="file" name="file"><br/> <br/>
+                <input type="submit" value="Upload">
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
