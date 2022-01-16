@@ -21,7 +21,7 @@ public class SyllableHttpRequestService {
 
         con.setRequestMethod("POST");
         con.setDoOutput(true);
-        con.getOutputStream().write("q=собака".getBytes());
+        con.getOutputStream().write(("q=" + query).getBytes());
 
         var content = new StringBuilder();
 
@@ -35,13 +35,14 @@ public class SyllableHttpRequestService {
 
         var output = content.toString();
 
-        var pattern = Pattern.compile("(?<=<span class=word-syllables>)(.*)(?=</span>)");
+        var pattern = Pattern.compile("(?<=<span class=word-syllables>)(.*?)((?=<br/>)|(?=</span>))");
         var matcher = pattern.matcher(output);
 
-        if (matcher.matches()) {
-            return matcher.group(1);
+        if (matcher.find()) {
+            var group = matcher.group(1);
+            return group;
+        } else {
+            throw new IllegalArgumentException(String.format("Syllables not found for %s", query));
         }
-
-        return "";
     }
 }
